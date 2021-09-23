@@ -1,13 +1,14 @@
-import { Container, Image, Segment, SegmentGroup } from 'semantic-ui-react'
+import { Container, Header, Image, Segment } from 'semantic-ui-react'
 import Navigation from './Navigation'
 
 export default function Layouts ({children}) {
     return(
         <>
-            <SegmentGroup>
+            <Container>
 
                 <Segment>
-                    <Image src="/images/banner.jpeg" fluid size="medium" />
+                    
+                    <Image src="/images/banner.jpeg" fluid />
                 </Segment>
 
                 <Segment>
@@ -21,7 +22,7 @@ export default function Layouts ({children}) {
 
                 </Segment>
 
-            </SegmentGroup>
+            </Container>
                 
         </>
     )
