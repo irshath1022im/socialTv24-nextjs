@@ -1,7 +1,7 @@
 import {  Grid,  Pagination} from "semantic-ui-react"
 import RecentVideoPostCard from "./RecentVideoPostCard";
 
-function RecentVideos () {
+const RecentVideos = () => {
     return( 
      <Grid>
        <Grid.Row>
@@ -40,23 +40,6 @@ function RecentVideos () {
        
       
       </Grid>
-
-      // <Grid columns="equal" stackable textAlign="left" >
-      //   <Grid.Row>
-      //     <Grid.Column computer="2">
-      //       <RecentPostCard />
-      //     </Grid.Column>
-
-      //     <Grid.Column computer="2">
-      //       <RecentPostCard />
-      //     </Grid.Column>
-
-      //     <Grid.Column computer="2">
-      //       <RecentPostCard />
-      //     </Grid.Column>
-
-      //   </Grid.Row>
-      // </Grid>
     )
 }
 

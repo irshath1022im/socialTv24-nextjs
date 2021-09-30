@@ -1,8 +1,7 @@
 import { Card, Icon, Image, Label } from "semantic-ui-react"
 
 
-
-export default () => {
+const RecentVideo = () => {
     return(
         <Card>
         <Image src="/images/news2.jpg" />
@@ -24,3 +23,5 @@ export default () => {
     </Card>
     )
 }
+
+export default RecentVideo;

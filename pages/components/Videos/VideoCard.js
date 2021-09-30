@@ -1,6 +1,6 @@
 import { Card, Embed, Label } from "semantic-ui-react"
 
-export default ()=>{
+const VideoCard = ()=>{
     return(
         <Card>
                     <Embed 
@@ -20,3 +20,5 @@ export default ()=>{
             
     )
 }
+
+export default VideoCard;

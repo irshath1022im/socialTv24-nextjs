@@ -1,21 +1,36 @@
-import { Card, Container, Grid, Icon, Image, Label, Pagination } from "semantic-ui-react"
+import axios from "axios";
+import { Card, Container, Grid, Icon, Image, Label, Message, Pagination } from "semantic-ui-react"
 import RecentPostCard from "../components/RecentPostCard"
 
 
-export default () => {
+const singlePost = (props) => {
+    // console.log(props)
+    
     return(
         <Container>
+
+            {
+                !props ?
+
+                <Message>
+                    Loading Content....
+                </Message>
+
+                :
+
+          
+
             <Grid>
                 <Grid.Row>
                     <Grid.Column mobile="16" tablet="11" computer="12">
                         <Card.Header as="h4">
-                        സ്ട്രോങ് റൂമിൽ കോടികളുടെ ആനക്കൊമ്പ്; കത്തിക്കുമോ കാണ്ടാമൃഗക്കൊമ്പു പോലെ?...
+                        {props.title}
                         </Card.Header>
 
-                        <Image src="/images/news1.jpg" />
+                        <Image src={`http://socialtv24.info//storage/${props.thumbnail}`} alt="news1" />
 
                         <Card.Description>
-                        2409 കാണ്ടാമൃഗക്കൊമ്പുകൾ അസം സർക്കാർ കൂട്ടിയിട്ടു കത്തിക്കുന്നത് കണ്ടതോടെ പഴയൊരു ശുപാർശ പൊടി തട്ടിയെ...
+                        {props.content}
 
 
                        
@@ -73,7 +88,42 @@ export default () => {
                 </Grid.Row>
             </Grid>
 
-
+        }
         </Container>
     )
 }
+
+
+export async function getStaticProps(context) {
+
+    // console.log(context)
+    const postId = context.params.id
+    // console.log(postId)
+    const url = `http://localhost:8000/api/posts/${postId}`;
+
+    const result = await axios.get(url)
+    const response = await result.data
+
+    // console.log(response)
+    return {
+        props: response
+    }
+
+}
+
+export async function getStaticPaths() {
+ 
+    return {
+        paths : [
+            { params : { id : '1'} },
+            { params : { id : '2'} },
+            { params : { id : '3'} },
+        ],
+
+            fallback: true
+        }
+
+}
+
+
+export default singlePost;

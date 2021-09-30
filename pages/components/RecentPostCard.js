@@ -3,10 +3,10 @@ import { Card, Icon, Image, Label } from "semantic-ui-react"
 
 
 
-export default () => {
+const RecentPostCard = () => {
     return(
         <Card fluid={true}>
-        <Image src="/images/topNews1.jpg" />
+        <Image src="/images/topNews1.jpg" alt="image" />
         <Card.Content textAlign="left">
             <Card.Description as="h4">
                 ഞാൻ കണ്ടത് എന്റെ കുട്ടികൾ കാണേണ്ട’’ ഞാൻ കണ്ടത് എന്റെ കുട്ടികൾ കാണേണ്ട
@@ -38,3 +38,5 @@ export default () => {
     </Card>
     )
 }
+
+export default RecentPostCard;

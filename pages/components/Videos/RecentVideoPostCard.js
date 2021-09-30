@@ -2,7 +2,7 @@ import { Card, Embed, Icon,  Label } from "semantic-ui-react"
 
 
 
-export default () => {
+const RecentVideoPostCard = () => {
     return(
         <Card fluid={true}>
         <Embed 
@@ -34,3 +34,5 @@ export default () => {
     </Card>
     )
 }
+
+export default RecentVideoPostCard;
