@@ -4,7 +4,7 @@ import { Card, Icon, Image, Label } from "semantic-ui-react"
 const RecentVideo = () => {
     return(
         <Card>
-        <Image src="/images/news2.jpg" />
+        <Image src="/images/news2.jpg" alt="image"/>
         <Card.Content>
             <Card.Header>
                 மதுபான நிலையங்களைத் திறக்கும் தீர்மானத்தை எடுத்த முட்டாள்கள் யார்? - கீதா எம்.பி

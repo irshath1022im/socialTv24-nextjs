@@ -1,5 +1,5 @@
 import { Card, Container, Embed, Grid, Header, Label, Segment } from "semantic-ui-react";
-import VideoCard from "./components/Videos/VideoCard";
+import VideoCard from "../components/Videos/VideoCard";
 
 function videos () {
  return(

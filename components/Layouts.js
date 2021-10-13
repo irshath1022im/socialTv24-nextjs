@@ -1,11 +1,14 @@
 import { Container, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import Navigation from './Navigation'
+import Head from 'next/head'
 
 export default function Layouts ({children}) {
     return(
         <>
             <Container>
-
+                <Head>
+                    <title>SocialTV24</title>
+                </Head>
                 <Segment>
                     
                     {/* <Image src="/images/banner.jpeg" fluid /> */}

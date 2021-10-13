@@ -1,22 +1,28 @@
 
 // import axios from 'axios'
-import { useState } from 'react'
-import {   Card, Embed, Grid, Image, Label, Pagination, Icon } from 'semantic-ui-react'
-import JanazaPosts from './components/JanazaPosts'
-import RecentPosts from './components/RecentPosts'
-// import RecentPosts from './components/RecentPosts'
+import {  useState,useEffect } from 'react'
+import {  Embed, Grid, Label} from 'semantic-ui-react'
+// import JanazaPosts from './components/JanazaPosts'
+import RecentPosts from '../components/RecentPosts'
 // import RecentVideos from './components/RecentVideos'
-// import TopNews from './components/TopNews'
-import RecentVideos from './components/Videos/RecentVideos'
-import Link from 'next/link'
-import axios from 'axios'
+import TopNews from '../components/TopNews'
+// import RecentVideos from './components/Videos/RecentVideos'
+import {  getLiveVideo, getRecentPosts, getTopNews } from '../api_utility/ApiRequests'
+import ReactHtmlParser from 'react-html-parser';
+
 
 
 function Home(props) {
-  // console.log(props)
- 
 
   const [live, setLive] = useState(false)
+
+  useEffect(() => {
+
+    if(props.liveVideos.length > 0) {
+      setLive(true)
+    }
+
+  }, [])
 
       return (
 
@@ -30,70 +36,41 @@ function Home(props) {
                       <Label ribbon color="red">Live</Label>
                       <Embed
                           source="youtube"
-                          iframe=""
+                          iframe={props.liveVideos[0].description}
                           placeholder="/images/banner.jpeg"
                       />
+
+                      {
+                      //  ReactHtmlParser(props.liveVideos[0].description)
+                      }
                       
                     </Grid.Column>
                   }
 
                     <Grid.Column mobile={16} tablet={8} computer={8}>
-                    <Label ribbon color="grey">TopNews</Label>
 
-                    {
-                      props.topNews.map( (item,key) =>{
-                        return(
+                        <Label ribbon color="grey">TopNews</Label>
 
-                          <Card fluid={true} key={key}>
-                            <Image src="/images/topNews1.jpg" />
-                            <Card.Content>
-                                <Card.Header>
-                                        {item.title}
-                                </Card.Header>
+                            {
+                              props.topNews.map( (item,key) =>{
+                                return(
 
-                                <Card.Meta>
-                                  {item.posted}
-                                </Card.Meta>
+                                <TopNews news={item} key={key}/>
 
-                                <Card.Description>
-                                  {item.description}
-                                    <Link href={`/posts/${item.id}`}>
-                                        <Label color="blue" as="a">Read More</Label>
-                                    </Link>
-                                </Card.Description>
-                                </Card.Content>
-
-                                <Card.Content extra>
-                                            <a>
-                                    <Icon name='user' />
-                                    22 Friends
-                                </a>
-                                </Card.Content>
-
-                
-
-                                  </Card>          
-
-                      )
-                    })
-                  }
+                              )
+                            })
+                          }
 
                     </Grid.Column>
-{/* 
+
+              
                     <Grid.Column mobile="16" tablet={ live ? 16 : 8 } computer={live ? 16 : 8} >
-                    <Label ribbon color="grey">Recent Posts</Label>
-                        <RecentPosts perItemComputer={live ? 4 : 8} />
-                        <Pagination
-                          boundaryRange={0}
-                          defaultActivePage={1}
-                          ellipsisItem={null}
-                          firstItem={null}
-                          lastItem={null}
-                          siblingRange={1}
-                          totalPages={10}
-                        />
-                    </Grid.Column> */}
-                    
+                      
+                        
+                          <RecentPosts perItemComputer={live ? 4 : 8} posts={props.recentPosts} />
+                      
+                    </Grid.Column>
+
                 </Grid.Row>
 
                 <hr />
@@ -125,40 +102,23 @@ function Home(props) {
 
   }
 
-  export async function getStaticProps() {
-    // const result = await axios.get('http://localhost:3000/api/topNews');
-    // console.log('getStaticProps in Home ')
-    // const response = await result.data
-
-    const url = 'http://localhost:8000/api/topNews';
-
-    const response = await axios.get(url)
-    const result = await response.data
-
-    // console.log(result)
+export async function getStaticProps() {
    
+  const recentPostsUrl = `${process.env.NEXT_PUBLIC_API_SERVER}/recentPosts`
+
+  // console.log(recentPostsUrl)
+
+      const topNews = await getTopNews()
+      const recentPosts = await getRecentPosts(recentPostsUrl)
+      const liveVideos = await getLiveVideo();
 
           return {
             props: {
-              topNews : result
-              
-              // [
-              //   { 
-              // title: 'TOP NEWS ‘‘ഞാൻ കണ്ടത് എന്റെ കുട്ടികൾ കാണേണ്ട’’: ദുരിതമൊഴിയാതെ അഫ്ഗാൻ അഭയാർഥികൾ...',
-              // description: '‘‘മാതൃരാജ്യം വിടാൻ ആരാണ് ഇഷ്ടപ്പെടുക? മടങ്ങിപ്പോകണമെന്നാണ് ആഗ്രഹം, എന്നാൽ താലിബാനിൽ വിശ്വാസമില്ല. അവ...',
-              // posted: '2021-09-2585'
-              //     },
-              // { 
-              //   title: 'NEWS 2',
-              //   description: 'Testing News',
-              //   posted: '2021-10-01'
-              //       }
-                
-              //   ]
-          },
-          revalidate: 10
-         
-          
+              topNews : topNews,
+              recentPosts: recentPosts,
+              liveVideos
+
+          }
         }
   }
 
