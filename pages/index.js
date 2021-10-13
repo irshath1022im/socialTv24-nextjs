@@ -4,11 +4,8 @@ import {  useState,useEffect } from 'react'
 import {  Embed, Grid, Label} from 'semantic-ui-react'
 // import JanazaPosts from './components/JanazaPosts'
 import RecentPosts from '../components/RecentPosts'
-// import RecentVideos from './components/RecentVideos'
 import TopNews from '../components/TopNews'
-// import RecentVideos from './components/Videos/RecentVideos'
 import {  getLiveVideo, getRecentPosts, getTopNews } from '../api_utility/ApiRequests'
-import ReactHtmlParser from 'react-html-parser';
 
 
 
@@ -39,10 +36,6 @@ function Home(props) {
                           iframe={props.liveVideos[0].description}
                           placeholder="/images/banner.jpeg"
                       />
-
-                      {
-                      //  ReactHtmlParser(props.liveVideos[0].description)
-                      }
                       
                     </Grid.Column>
                   }

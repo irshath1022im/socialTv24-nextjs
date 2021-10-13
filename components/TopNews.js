@@ -16,7 +16,7 @@ function TopNews ({news}){
     }
     return(
         <Card fluid={true}>
-        <Image src={`http://socialtv24.info/storage/${news.thumbnail}`} alt={news.id}  />
+        <Image src={`${process.env.NEXT_PUBLIC_IMAGE_SERVER}/${news.thumbnail}`} alt={news.id}  />
         <Card.Content>
             <Card.Header>
                     {news.title}
