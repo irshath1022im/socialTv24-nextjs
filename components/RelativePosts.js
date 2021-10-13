@@ -35,30 +35,30 @@ const {data, error} = useSWR(`${process.env.NEXT_PUBLIC_API_SERVER}/posts/subCat
                     {
                         data.data.map( post => {
                             return(
-                                <Link href={`/posts/${post.id}`}>
-                                <Card 
-                                    key={post.id}
-                                    >
-                                <Card.Content>
-                                    <Feed size="large">
-                                      
-                                        <Feed.Label />
-                                        <Feed.Content>
-                                            <Feed.Date content={<Moment toNow>{post.created_at}</Moment>} />
-                                            <Feed.Summary >
-                                                {post.title}
-                                            </Feed.Summary>
-                                        </Feed.Content>
-                                             
-                                     
-                                    </Feed>
-                                </Card.Content>
+                                // 
+                                <Card key={post.id}>
+                                    <Card.Content>
+                                        <Feed size="large">
+                                        
+                                            <Feed.Label />
+                                            <Feed.Content>
+                                                <Feed.Date content={<Moment toNow>{post.created_at}</Moment>} />
+                                                <Feed.Summary >
+                                                    <Link href={`/posts/${post.id}`} >
+                                                        {post.title}
+                                                    </Link>
+                                                </Feed.Summary>
+                                            </Feed.Content>
+                                                
+                                        
+                                        </Feed>
+                                    </Card.Content>
 
-                                <Card.Content extra>
-                                <Label attached="bottom right" color={categoryColor[post.subCategoryId]}>{post.subCategory}</Label>
-                                </Card.Content>
+                                    <Card.Content extra>
+                                    <Label attached="bottom right" color={categoryColor[post.subCategoryId]}>{post.subCategory}</Label>
+                                    </Card.Content>
                                 </Card>
-                                </Link>
+                               
                                  )
                                 })
                     }

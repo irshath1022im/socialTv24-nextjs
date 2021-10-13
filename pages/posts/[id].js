@@ -8,11 +8,10 @@ import { useRouter } from "next/dist/client/router";
 
 
 
-const singlePost = ({selectedPost, subCategoryId}) => {
-  
-const router = useRouter()
+const SinglePost = ({selectedPost, subCategoryId}) => {
+    const router = useRouter()
 
-console.log(router)
+// console.log(router)
     
 
     return(
@@ -144,4 +143,4 @@ export async function getStaticPaths(context) {
     }
 }
 
-export default  singlePost;
+export default  SinglePost;
