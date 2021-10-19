@@ -37,7 +37,7 @@ const SinglePost = ({selectedPost, subCategoryId}) => {
                                         {selectedPost.title}
                                         </Card.Header>
 
-                                        <Image src={`http://socialtv24.info//storage/${selectedPost.thumbnail}`} alt="news1" />
+                                        <Image src={`http://socialtv24.info/storage/${selectedPost.thumbnail}`} alt="news1" />
 
                                         <Card.Description>
                                         { ReactHtmlParser(selectedPost.content)}

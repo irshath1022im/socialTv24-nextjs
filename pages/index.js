@@ -110,8 +110,8 @@ export async function getStaticProps() {
               topNews : topNews,
               recentPosts: recentPosts,
               liveVideos
-
-          }
+          },
+          revalidate: 60
         }
   }
 
