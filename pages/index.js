@@ -31,11 +31,17 @@ function Home(props) {
                     live &&
                     <Grid.Column mobile={16} tablet={8} computer={8}>
                       <Label ribbon color="red">Live</Label>
-                      <Embed
+                      {/* <Embed
                           source="youtube"
                           iframe={props.liveVideos[0].description}
                           placeholder="/images/banner.jpeg"
-                      />
+                      /> */}
+
+  
+                    {/* <iframe width=\"869\" height=\"695\" src=\"https://www.youtube.com/embed/c3TqDBWiSM4\" title=\"YouTube video player\"  allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" ></iframe> */}
+
+                    <div dangerouslySetInnerHTML={{ __html: props.liveVideos[0].description}} className="iframe"/>
+  
                       
                     </Grid.Column>
                   }

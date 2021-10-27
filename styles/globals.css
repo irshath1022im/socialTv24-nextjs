@@ -39,3 +39,12 @@ a {
   background: rgb(217,222,8) !important;
   background: linear-gradient(90deg, rgba(217,222,8,1) 0%, rgba(191,116,10,0.9752275910364145) 100%) !important;
 }
+
+
+.iframe{
+  width: 80% !important;
+}
+
+.iframe {
+  padding: 10px !important;
+}
